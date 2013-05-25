@@ -21,11 +21,11 @@ class Youtube(object):
 
         section = "youtube"
         config = ConfigParser.SafeConfigParser()
-        config.readfp(open('../config.cfg'))
+        config.readfp(open('config.conf'))
 
-        DEVELOPER_KEY = config.get(section, 'DEVELOPER_KEY_V2')
-        YOUTUBE_API_SERVICE_NAME = config.get(section, 'YOUTUBE_API_SERVICE_NAME')
-        YOUTUBE_API_VERSION = config.get(section, 'YOUTUBE_API_VERSION')
+        self.DEVELOPER_KEY = config.get(section, 'DEVELOPER_KEY_V2')
+        self.YOUTUBE_API_SERVICE_NAME = config.get(section, 'YOUTUBE_API_SERVICE_NAME')
+        self.YOUTUBE_API_VERSION = config.get(section, 'YOUTUBE_API_VERSION')
 
     def get_movie_by_title(self, title):
         '''
@@ -37,8 +37,8 @@ class Youtube(object):
         client = gdata.youtube.service.YouTubeService()
         query = gdata.youtube.service.YouTubeVideoQuery()
         query.prettyprint = True
-        query.key=DEVELOPER_KEY
-        query.v = YOUTUBE_API_VERSION
+        query.key = self.DEVELOPER_KEY
+        query.v = self.YOUTUBE_API_VERSION
         query.vq = search_term
         query.max_results = '2'
         feed = client.YouTubeQuery(query)

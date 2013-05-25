@@ -7,7 +7,7 @@ class movie(object):
         self.title = title
         self.service = service
         self.stream = False
-        self.dvd = True
+        self.dvd = False
         self.price_stream = 0
         self.price_dvd = 0
 
