@@ -51,6 +51,9 @@ class Youtube(object):
             m.price_stream = 0
             break
 
+        if not m.movie:
+            return {}
+
         return m
 
 if __name__ == '__main__':

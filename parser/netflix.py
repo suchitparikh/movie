@@ -26,6 +26,10 @@ class Netflix(object):
         '''
 
         res = self.service.get_movie_by_title(title, filter=filter)
+
+        if not res:
+            return {}
+
         m_details = self.service.get_title(res.get('id'), category="format_availability")
         m = movie(str(res.get('title')), 'Netflix')
 
@@ -34,8 +38,10 @@ class Netflix(object):
             f = m_details.get('delivery_formats')
             if f.get('DVD'):
                 m.dvd = True
+                m.price_dvd = 'subscription'
             if f.get('instant'):
                 m.stream = True
+                m.price_stream = 'subscription'
 
         # return the movie dict
         return m
